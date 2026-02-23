@@ -29,11 +29,11 @@ theorem memoryExpansionCost_stop (symState : EVM.State) :
   simp [memoryExpansionCost, memoryExpansionCost.μᵢ']
 
 theorem EvmYul.step_stop_summary_simple (symState : EVM.State) :
-  EvmYul.step (@Operation.STOP .EVM) symState =
+  EvmYul.step (@Operation.STOP .EVM) (arg := .none) symState =
   .ok {symState with returnData := ByteArray.empty} := rfl
 
 theorem EvmYul.step_stop_summary (symState : EVM.State) :
-EvmYul.step (@Operation.STOP .EVM)
+EvmYul.step (@Operation.STOP .EVM) (arg := .none)
   {symState with
       stack := symStack,
       pc := symPc,

@@ -776,13 +776,9 @@ theorem X_oneOp_equiv
       sorry
     . -- `xor`
       -- To prove this, first `stackOps_op.do` needs to be fixed for `xor`
-      aesop (add simp [GasInterface.cancun_def, «_-Int_», intMap_add_dist, oneOpLHS, oneOpRHS, stackOps_op.from_k])
-      (add safe (by rw [intMap_sub_dist])) (add safe (by apply le_of_lt))
       sorry
     . -- `xor`
       -- To prove this, first `stackOps_op.do` needs to be fixed for `xor`
-      aesop (add simp [GasInterface.cancun_def, «_-Int_», intMap_add_dist, oneOpLHS, oneOpRHS, stackOps_op.from_k])
-      (add safe (by rw [intMap_sub_dist])) (add safe (by apply le_of_lt))
       sorry
     . -- `byte`
       -- To prove this, first `stackOps_op.do` needs to be fixed for `byte`

@@ -102,9 +102,9 @@ theorem sizeWordStackAuxAdd {n : SortInt} {ws : SortWordStack} :
 
 theorem sizeWordStackIsSome {ws : SortWordStack} :
   sizeWordStackAux ws 0 = some (wsLength ws) := by
-  induction' ws
-  . aesop (add simp [sizeWordStackAux, _432555e])
-  . simp_all [sizeWordStack_add_one, wsLength]
+  induction ws
+  · aesop (add simp [sizeWordStackAux, _432555e])
+  · simp_all [sizeWordStack_add_one, wsLength]
 
 theorem wsLength_eq_length_wordStackMap {ws : SortWordStack} :
   wsLength ws = List.length (wordStackMap ws) := by

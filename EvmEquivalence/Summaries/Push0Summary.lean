@@ -18,7 +18,7 @@ variable (symExecLength : ℕ)
 variable (symReturnData symCode symMemory : ByteArray)
 variable (symAccessedStorageKeys : Batteries.RBSet (AccountAddress × UInt256) Substate.storageKeysCmp)
 variable (symAccessedStorageKeys : Batteries.RBSet (AccountAddress × UInt256) Substate.storageKeysCmp)
-variable (symAccounts : AccountMap)
+variable (symAccounts : AccountMap .EVM)
 variable (symCodeOwner symSender symSource symCoinbase : AccountAddress)
 variable (symPerm : Bool)
 
@@ -37,12 +37,15 @@ def EVM.step_push0 : Transformer :=
 
 @[simp]
 def EvmYul.step_push0 : Transformer :=
-  @EvmYul.step OperationType.EVM push0EVM
+  @EvmYul.step OperationType.EVM push0EVM .none
 
 theorem EvmYul.step_push0_summary (symState : EVM.State):
   EvmYul.step_push0 {symState with
     stack := symStack,
-    pc := symPc} = default := rfl
+    pc := symPc} =
+  .ok { symState with
+    stack := symStack.push ⟨0⟩,
+    pc := symPc + .ofNat 1 } := rfl
 
 theorem EVM.step_push0_summary_simple (gpos : 0 < gas) (symState : EVM.State):
   @EVM.step_push0 gas gasCost symState =
