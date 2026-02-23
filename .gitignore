@@ -1,6 +1,13 @@
 ## Lake
 .lake/*
 .cache/*
+## Tooling / agent dirs
+.agents/
+.codex/
+tmp/
+Init/
+## Secrets
+.env
 ## Blueprint
 /blueprint/print/print.log
 /blueprint/web/
