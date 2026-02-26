@@ -18,7 +18,7 @@ variable (symActiveWords symPrevrandao : UInt256)
 variable (symExecLength : ℕ)
 variable (symReturnData symCode symMemory : ByteArray)
 variable (symAccessedStorageKeys : Batteries.RBSet (AccountAddress × UInt256) Substate.storageKeysCmp)
-variable (symAccounts : AccountMap)
+variable (symAccounts : AccountMap .EVM)
 variable (symCodeOwner symSender symSource symCoinbase : AccountAddress)
 variable (symPerm : Bool)
 

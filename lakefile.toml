@@ -11,7 +11,7 @@ maxRecDepth = 1000
 [[require]]
 name = "evmyul"
 scope = "NethermindEth"
-rev = "main"
+rev = "047f63070309f436b66c61e276ab3b6d1169265a"
 
 [[require]]
 name = "checkdecls"
@@ -20,7 +20,7 @@ git = "https://github.com/PatrickMassot/checkdecls.git"
 [[require]]
 name = "«doc-gen4»"
 git = "https://github.com/leanprover/doc-gen4"
-rev = "v4.22.0"
+rev = "v4.24.0"
 
 [[lean_lib]]
 name = "EvmEquivalence"

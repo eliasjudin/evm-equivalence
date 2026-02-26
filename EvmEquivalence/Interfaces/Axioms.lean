@@ -11,7 +11,7 @@ The reason of needing this axioms is to have placeholders for pending work. Such
  -/
 namespace Axioms
 
-axiom SortAccountsCellMap : SortAccountsCell → AccountMap
+axiom SortAccountsCellMap : SortAccountsCell → AccountMap .EVM
 
 axiom SortAccessedStorageCellMap : SortAccessedStorageCell → Batteries.RBSet (AccountAddress × UInt256) Substate.storageKeysCmp
 

@@ -17,7 +17,7 @@ variable (symPrevrandao : UInt256)
 variable (symExecLength : ℕ)
 variable (symReturnData symCode symMemory : ByteArray)
 variable (symAccessedStorageKeys : Batteries.RBSet (AccountAddress × UInt256) Substate.storageKeysCmp)
-variable (symAccounts : AccountMap)
+variable (symAccounts : AccountMap .EVM)
 variable (symCodeOwner symSender symSource symCoinbase : AccountAddress)
 variable (symPerm : Bool)
 
@@ -72,7 +72,7 @@ theorem sstore_bypass_private (symState : EVM.State):
   EVM.binaryStateOp EvmYul.State.sstore ss := rfl
 
 @[simp]
-def accountMap_sstore (symState : EvmYul.State) (key value : UInt256) : AccountMap :=
+def accountMap_sstore (symState : EvmYul.State .EVM) (key value : UInt256) : AccountMap .EVM :=
   let Iₐ := symState.executionEnv.codeOwner
   let ownerAcc := (State.lookupAccount symState Iₐ)
   match ownerAcc with
@@ -81,7 +81,7 @@ def accountMap_sstore (symState : EvmYul.State) (key value : UInt256) : AccountM
     symState.accountMap.insert Iₐ (Account.updateStorage (ownerAcc) key value)
 
 @[simp]
-def accessedStorageKeys_sstore (symState : EvmYul.State) (key : UInt256) :=
+def accessedStorageKeys_sstore (symState : EvmYul.State .EVM) (key : UInt256) :=
   let Iₐ := symState.executionEnv.codeOwner
   let ownerAcc := (State.lookupAccount symState Iₐ)
   match ownerAcc with
@@ -90,7 +90,7 @@ def accessedStorageKeys_sstore (symState : EvmYul.State) (key : UInt256) :=
 
 -- From EvmYul.StateOps.sstore
 @[local simp]
-def Aᵣ_sstore (symState: EvmYul.State) (key val : UInt256) : UInt256 :=
+def Aᵣ_sstore (symState: EvmYul.State .EVM) (key val : UInt256) : UInt256 :=
     let Iₐ := symState.executionEnv.codeOwner
   let { storage := σ_Iₐ, .. } := symState.accountMap.find! Iₐ
   let { storage := σ₀_Iₐ, .. } := symState.σ₀.find! Iₐ
@@ -122,7 +122,7 @@ def Aᵣ_sstore (symState: EvmYul.State) (key val : UInt256) : UInt256 :=
         | .ofNat n => symState.substate.refundBalance + .ofNat n
         | .negSucc n => symState.substate.refundBalance - .ofNat n - ⟨1⟩
 
-theorem sstore_summary (symState : EvmYul.State) (key value : UInt256):
+theorem sstore_summary (symState : EvmYul.State .EVM) (key value : UInt256):
   let ss := {symState with
              executionEnv := {symState.executionEnv with
                   code := symCode,

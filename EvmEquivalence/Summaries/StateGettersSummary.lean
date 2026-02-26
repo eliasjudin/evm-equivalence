@@ -35,7 +35,7 @@ variable (symPrevrandao : UInt256)
 variable (symExecLength : ℕ)
 variable (symReturnData symCode symMemory : ByteArray)
 variable (symAccessedStorageKeys : Batteries.RBSet (AccountAddress × UInt256) Substate.storageKeysCmp)
-variable (symAccounts : AccountMap)
+variable (symAccounts : AccountMap .EVM)
 variable (symCodeOwner symSender symSource symCoinbase : AccountAddress)
 variable (symPerm : Bool)
 
@@ -101,7 +101,7 @@ def stateGetter_op.t : Operation .EVM :=
 
 def EVM.step_arith : Transformer := EVM.step gas gasCost op.get
 
-def EvmYul.step_arith : Transformer := @EvmYul.step .EVM op.t
+def EvmYul.step_arith : Transformer := @EvmYul.step .EVM op.t .none
 
 @[simp]
 def stateGetter_op.do (symState : EVM.State) :=

@@ -170,7 +170,7 @@ def accCodeMap : SortAccountCode → ByteArray
 
 /- Note that Origin Storage Cell (`origStorage`) is not needed from `SortAccountCell` -/
 @[simp]
-noncomputable def accountMap (acc : SortAccountCell) : Account where
+noncomputable def accountMap (acc : SortAccountCell) : Account .EVM where
   nonce := intMap acc.nonce.val
   balance := intMap acc.balance.val
   storage := storageMap acc.storage
@@ -207,7 +207,7 @@ def blockHeader_map (tc : SortGeneratedTopCell) (s : EVM.State) : BlockHeader :=
   }
 
 @[simp]
-def executionEnv_map (tc : SortGeneratedTopCell) (s : EVM.State) : ExecutionEnv :=
+def executionEnv_map (tc : SortGeneratedTopCell) (s : EVM.State) : ExecutionEnv .EVM :=
   {s.executionEnv with
     codeOwner := idMap tc.Iₐ
     source := accountAddressMap tc.caller.val

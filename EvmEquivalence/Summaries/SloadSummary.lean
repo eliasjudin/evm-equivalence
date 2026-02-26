@@ -17,7 +17,7 @@ variable (symPrevrandao : UInt256)
 variable (symExecLength : ℕ)
 variable (symReturnData symCode symMemory : ByteArray)
 variable (symAccessedStorageKeys : Batteries.RBSet (AccountAddress × UInt256) Substate.storageKeysCmp)
-variable (symAccounts : AccountMap)
+variable (symAccounts : AccountMap .EVM)
 variable (symCodeOwner symSender symSource symCoinbase : AccountAddress)
 variable (symPerm : Bool)
 
@@ -39,13 +39,13 @@ abbrev EvmYul.step_sload : Transformer :=
   EvmYul.step sloadEVM
 
 @[simp]
-def lookupStorage_sload (symState : EvmYul.State) (key : UInt256) : UInt256 :=
+def lookupStorage_sload (symState : EvmYul.State .EVM) (key : UInt256) : UInt256 :=
   let Iₐ := symState.executionEnv.codeOwner
   match symState.lookupAccount Iₐ with
   | none => ⟨0⟩
   | some acc => acc.lookupStorage key
 
-theorem sload_summary (symState : EvmYul.State) (key : UInt256):
+theorem sload_summary (symState : EvmYul.State .EVM) (key : UInt256):
   let ss := {symState with
              executionEnv := {symState.executionEnv with
                   code := symCode,

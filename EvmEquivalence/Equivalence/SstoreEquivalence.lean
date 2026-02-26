@@ -450,7 +450,7 @@ variable (symPc symGasAvailable symRefund key value : UInt256)
 variable (symExecLength : ℕ)
 variable (symReturnData symCode : ByteArray)
 variable (symAccessedStorageKeys : Batteries.RBSet (AccountAddress × UInt256) Substate.storageKeysCmp)
-variable (symAccounts : AccountMap)
+variable (symAccounts : AccountMap .EVM)
 variable (symCodeOwner : AccountAddress)
 
 attribute [local simp] State.lookupAccount
@@ -459,7 +459,7 @@ attribute [local simp] GasConstants.Gsreset
 attribute [local simp] GasConstants.Gwarmaccess
 attribute [local simp] GasConstants.Gsset
 
-theorem Aᵣ_rsstore_eq {new /- current original -/} /- {sched} -/ {symState: EvmYul.State} /- (h : sched = .CANCUN_EVM) -/
+theorem Aᵣ_rsstore_eq {new /- current original -/} /- {sched} -/ {symState: EvmYul.State .EVM} /- (h : sched = .CANCUN_EVM) -/
   -- Hypothesis linking `Aᵣ` and `rsstore`
   /- (current_link : (symState.accountMap.find! symCodeOwner).storage.findD key ⟨0⟩ = intMap current)
   (original_link : (symState.σ₀.find! symCodeOwner).storage.findD key ⟨0⟩ = intMap original) -/
