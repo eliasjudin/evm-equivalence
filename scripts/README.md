@@ -3,6 +3,14 @@ Helper Scripts
 
 This folder contains scripts that help with the modification or usage of the K-generated Lean code and other miscellaneous.
 
+## Lean 4.24 migration guardrails
+
+The [`lean424`](./lean424) subfolder contains guardrails used for the Lean 4.24 migration branch:
+
+- trust-base gate (`sorry`/`axiom` additions),
+- declaration-signature drift gate,
+- differential opcode harness runner (baseline vs candidate branch).
+
 ## `format-rewrites.py`
 
 The [`format-rewrites.py`](./format-rewrites.py) script takes a K-generated inductive `Rewrites` rule and pretty prints it.
