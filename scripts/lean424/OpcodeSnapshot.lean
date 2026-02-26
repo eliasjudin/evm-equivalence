@@ -3,7 +3,7 @@ import EvmYul.EVM.Semantics
 open EvmYul
 open EVM
 
-namespace Lean424OpcodeSnapshot
+namespace OpcodeSnapshot
 
 structure Snapshot where
   op : String
@@ -80,6 +80,6 @@ def main : IO Unit := do
   for s in snapshots do
     IO.println (render s)
 
-end Lean424OpcodeSnapshot
+end OpcodeSnapshot
 
-def main : IO Unit := Lean424OpcodeSnapshot.main
+def main : IO Unit := OpcodeSnapshot.main
